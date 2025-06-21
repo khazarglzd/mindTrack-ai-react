@@ -1,13 +1,10 @@
-import React from 'react'
+import React from 'react';
+import RouteConfig from './routes/RouteConfig';
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-blue-600" > mindTracker</h1>
-    </div>
-
-
-  )
+    <RouteConfig />
+  );
 }
 
-export default App
+export default App;

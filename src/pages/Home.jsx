@@ -1,9 +1,37 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    return (
-        <div>Home</div>
-    )
-}
+    const navigate = useNavigate();
 
-export default Home
+    const handleLogin = () => {
+        // Şimdilik gerçek auth yok, direkt dashboard’a yönlendir
+        navigate('/dashboard');
+    };
+
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-white to-blue-600 p-6">
+            <h1 className="text-5xl font-sans mb-4 text-white drop-shadow-lg">
+                <span className="font-normal">mind</span>
+                <span className="font-bold">Tracker</span>
+            </h1>
+            <p className="text-lg mb-8 max-w-md text-center text-white drop-shadow-md">
+                Track your mind, record your daily mood, and monitor your progress.
+            </p>
+
+            <div className="space-x-4">
+                <button
+                    onClick={handleLogin}
+                    className="bg-white text-blue-600 font-semibold px-6 py-3 rounded shadow hover:bg-gray-100 transition cursor-pointer"
+                >
+                    Log In
+                </button>
+                <button className="bg-transparent border border-white px-6 py-3 rounded text-white hover:bg-white hover:text-blue-600 transition">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default Home;

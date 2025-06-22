@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
 
-const Home = () => {
+
+const Home = ({ props }) => {
     const navigate = useNavigate();
 
+    const { signIn, isAuthenticated } = useAuth()
+
+
     const handleLogin = () => {
-        // Şimdilik gerçek auth yok, direkt dashboard’a yönlendir
+        signIn()
         navigate('/dashboard');
     };
 
@@ -20,12 +25,17 @@ const Home = () => {
             </p>
 
             <div className="space-x-4">
-                <button
-                    onClick={handleLogin}
-                    className="bg-white text-blue-600 font-semibold px-6 py-3 rounded shadow hover:bg-gray-100 transition cursor-pointer"
-                >
-                    Log In
-                </button>
+                {
+                    !isAuthenticated && (
+                        <button
+                            onClick={handleLogin}
+                            className="bg-white text-blue-600 font-semibold px-6 py-3 rounded shadow hover:bg-gray-100 transition cursor-pointer"
+                        >
+                            Sign In
+                        </button>
+                    )
+                } {isAuthenticated && <p>You alreay signed in</p>}
+
                 <button className="bg-transparent border border-white px-6 py-3 rounded text-white hover:bg-white hover:text-blue-600 transition">
                     Sign Up
                 </button>

@@ -25,7 +25,7 @@ const AddMoodForm = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-white text-blue-700 rounded-lg shadow p-6 space-y-4"
+            className="bg-white/80 text-blue-800 rounded-lg shadow-lg p-6 space-y-4"
         >
             <h2 className="text-xl font-bold">Add New Mood</h2>
 
@@ -57,7 +57,7 @@ const AddMoodForm = () => {
 
             <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
             >
                 Save Mood
             </button>

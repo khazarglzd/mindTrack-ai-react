@@ -7,19 +7,20 @@ const AddMoodForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString(); // örnek: "27.06.2025"
+        const formattedTime = now.toLocaleTimeString(); // örnek: "14:37:22"
+
         const newMood = {
             id: Date.now().toString(),
             emoji,
             note,
-            date: new Date().toISOString().split('T')[0],
+            date: formattedDate,
+            time: formattedTime,
         };
 
-        console.log('New Mood:', newMood);
-        // İleride burada context'e dispatch edeceğiz.
-
-        // Formu sıfırla
-        setEmoji('😊');
-        setNote('');
+        addMood(newMood);
+        navigate('/dashboard');
     };
 
     return (

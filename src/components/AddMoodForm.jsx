@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMood } from '../context/MoodContext';
 
 const AddMoodForm = () => {
-    const [emoji, setEmoji] = useState('😊');
+    const [emoji, setEmoji] = useState('');
     const [note, setNote] = useState('');
+
+    const { addMood } = useMood();  // Burada addMood'u context'ten alıyoruz
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString(); // örnek: "27.06.2025"
-        const formattedTime = now.toLocaleTimeString(); // örnek: "14:37:22"
-
         const newMood = {
-            id: Date.now().toString(),
+            id: Date.now(),
             emoji,
             note,
-            date: formattedDate,
-            time: formattedTime,
+            date: new Date().toISOString(),
         };
 
         addMood(newMood);
+
         navigate('/dashboard');
     };
+
 
     return (
         <form

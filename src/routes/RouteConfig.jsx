@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Home from '../pages/Home';
 import Dashboard from '../pages/Dashboard';
 import AddMoodForm from '../components/AddMoodForm';
-import { useAuth } from '../context/authContext';
+import { useAuth } from '../context/AuthContext';
 import Layout from "../components/Layout"
 
 function RouteConfig() {

@@ -1,9 +1,10 @@
 import React from 'react'
-import { useAuth } from '../context/authContext'
+import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout'
 import AddMoodForm from '../components/AddMoodForm'
 import MoodList from '../components/MoodList'
+import { useMood } from "../context/MoodContext"
 
 const Dashboard = () => {
 
@@ -16,6 +17,10 @@ const Dashboard = () => {
         navigate('/');
     };
 
+    const { moods } = useMood();
+
+
+    console.log(moods)
     return (
         <Layout>
             <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full">
@@ -30,7 +35,7 @@ const Dashboard = () => {
             >
                 Sign Out
             </button> */}
-                <MoodList />
+                <MoodList moods={moods} />
             </div>
         </Layout>
     )

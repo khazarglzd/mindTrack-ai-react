@@ -1,5 +1,5 @@
-import { AuthProvider } from './authContext';
-import { MoodProvider } from './moodContext';
+import { AuthProvider } from './AuthContext';
+import { MoodProvider } from './MoodContext';
 
 const GlobalProvider = ({ children }) => (
     <AuthProvider>

@@ -12,11 +12,16 @@ const AddMoodForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!emoji || !note.trim()) {
+            alert('Please select a mood and write a note.');
+            return;
+        }
+
         const newMood = {
             id: Date.now(),
             emoji,
             note,
-            date: new Date().toISOString(),
+            date: `${new Date().toLocaleDateString('tr-TR')}  /  ${new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`
         };
 
         addMood(newMood);
@@ -28,7 +33,7 @@ const AddMoodForm = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-white/80 text-blue-800 rounded-lg shadow-lg p-6 space-y-4"
+            className="bg-white/80 text-blue-800 rounded-lg shadow-lg p-6 space-y-4 mb-4"
         >
             <h2 className="text-xl font-bold">Add New Mood</h2>
 
@@ -40,6 +45,7 @@ const AddMoodForm = () => {
                     onChange={(e) => setEmoji(e.target.value)}
                     className="border rounded px-3 py-2"
                 >
+                    <option value="" disabled>Choose your mood</option>
                     <option value="😊">😊 Happy</option>
                     <option value="😔">😔 Sad</option>
                     <option value="😠">😠 Angry</option>

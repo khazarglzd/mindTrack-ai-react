@@ -1,14 +1,15 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const MoodContext = createContext();
 
 export const useMood = () => useContext(MoodContext);
 
 export const MoodProvider = ({ children }) => {
-    const [moods, setMoods] = useState([]);
+    const [moods, setMoods] = useLocalStorage("moods", []);
 
     const addMood = (newMood) => {
-        setMoods((prev) => [...prev, newMood]);
+        setMoods((prev) => [newMood, ...prev]);
     };
 
     return (

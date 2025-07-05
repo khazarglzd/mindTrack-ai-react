@@ -6,6 +6,7 @@ const MoodList = ({ moods }) => {
     const [editingId, setEditingId] = useState(null);
     const [editedEmoji, setEditedEmoji] = useState('');
     const [editedNote, setEditedNote] = useState('');
+    const [isOpen, setIsOpen] = useState(true);
 
     const handleEditClick = (mood) => {
         setEditingId(mood.id);
@@ -18,7 +19,7 @@ const MoodList = ({ moods }) => {
             id,
             emoji: editedEmoji,
             note: editedNote,
-            date: new Date().toLocaleString('tr-TR'), // tarihi güncelliyoruz istersen koruyabilirsin
+            date: `${new Date().toLocaleDateString('tr-TR')}  /  ${new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`
         });
         setEditingId(null);
     };
@@ -33,61 +34,79 @@ const MoodList = ({ moods }) => {
 
     return (
         <div className="space-y-4">
-            {moods.map((mood) => (
-                <div
-                    key={mood.id}
-                    className="bg-white/80 text-blue-800 rounded-lg relative shadow-lg p-6 space-y-4"
-                >
-                    <p className="text-xl text-blue-400">Date: {mood.date}</p>
 
-                    {editingId === mood.id ? (
-                        <>
-                            <input
-                                className="w-full p-2 border rounded"
-                                value={editedEmoji}
-                                onChange={(e) => setEditedEmoji(e.target.value)}
-                            />
-                            <textarea
-                                className="w-full p-2 border rounded"
-                                value={editedNote}
-                                onChange={(e) => setEditedNote(e.target.value)}
-                            />
-                            <div className="flex justify-end space-x-2">
-                                <button
-                                    onClick={() => handleSave(mood.id)}
-                                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-800 transition"
-                                >
-                                    Save
-                                </button>
-                                <button
-                                    onClick={handleCancel}
-                                    className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-600 transition"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <p className="text-m text-blue-400">Mood: {mood.emoji}</p>
-                            <p className="text-m text-blue-400">Note: {mood.note}</p>
-                            <button
-                                onClick={() => handleEditClick(mood)}
-                                className="bg-purple-600 text-white px-4 py-2 absolute bottom-6 right-6 rounded cursor-pointer hover:bg-gray-800 transition"
-                            >
-                                Edit
-                            </button>
-                        </>
-                    )}
+            <div onClick={() => setIsOpen(!isOpen)} className="flex justify-between items-center cursor-pointer bg-white/90 px-4 py-2 rounded shadow">
+                <h2 className="text-xl font-semibold text-blue-800">My Mood List</h2>
+                <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-blue-600 hover:text-blue-900 transition">
+                    {isOpen ? '▲' : '▼'}
+                </button>
+            </div>
 
-                    <button
-                        onClick={() => deleteMood(mood.id)}
-                        className="bg-gray-600 text-white px-4 py-2 absolute bottom-6 right-6 rounded cursor-pointer hover:bg-gray-800 transition"
+
+            {isOpen && moods.map((mood) => {
+                const isEditing = editingId === mood.id;
+
+                return (
+                    <div
+                        key={mood.id}
+                        className="bg-white/80 text-blue-800 rounded-lg shadow-lg p-6 relative"
                     >
-                        Delete
-                    </button>
-                </div>
-            ))}
+                        {isEditing ? (
+                            <div className="space-y-4">
+                                <p className="text-xl text-blue-400">
+                                    Editing Entry from: {mood.date}
+                                </p>
+                                <input
+                                    className="w-full p-2 border rounded"
+                                    value={editedEmoji}
+                                    onChange={(e) => setEditedEmoji(e.target.value)}
+                                />
+                                <textarea
+                                    className="w-full p-2 border rounded"
+                                    value={editedNote}
+                                    onChange={(e) => setEditedNote(e.target.value)}
+                                />
+                                <div className="flex justify-end gap-2 pt-2">
+                                    <button
+                                        onClick={() => handleSave(mood.id)}
+                                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-800 transition"
+                                    >
+                                        Save
+                                    </button>
+                                    <button
+                                        onClick={handleCancel}
+                                        className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-600 transition"
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        ) : (
+                            <>
+                                <p className="text-xl text-blue-400">Date: {mood.date}</p>
+                                <p className="text-m text-blue-400">Mood: {mood.emoji}</p>
+                                <p className="text-m text-blue-400">Note: {mood.note}</p>
+
+
+                                <div className="absolute bottom-4 right-4 flex gap-2">
+                                    <button
+                                        onClick={() => handleEditClick(mood)}
+                                        className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-800 transition"
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={() => deleteMood(mood.id)}
+                                        className="bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-800 transition"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                );
+            })}
         </div>
     );
 };

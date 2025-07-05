@@ -66,7 +66,7 @@ const AddMoodForm = () => {
 
             <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
+                className="bg-blue-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-blue-800 transition"
             >
                 Save Mood
             </button>

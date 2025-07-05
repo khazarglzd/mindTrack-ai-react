@@ -16,9 +16,16 @@ export const MoodProvider = ({ children }) => {
         const filteredMoods = moods.filter((mood) => mood.id !== id);
         setMoods(filteredMoods);
     };
+    const editMood = (updatedMood) => {
+        setMoods((prevMoods) =>
+            prevMoods.map((mood) =>
+                mood.id === updatedMood.id ? updatedMood : mood
+            )
+        );
+    };
 
     return (
-        <MoodContext.Provider value={{ moods, addMood, deleteMood }}>
+        <MoodContext.Provider value={{ moods, addMood, deleteMood, editMood }}>
             {children}
         </MoodContext.Provider>
     );

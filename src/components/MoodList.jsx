@@ -37,7 +37,7 @@ const MoodList = ({ moods }) => {
 
             <div onClick={() => setIsOpen(!isOpen)} className="flex justify-between items-center cursor-pointer bg-white/90 px-4 py-2 rounded shadow">
                 <h2 className="text-xl font-semibold text-blue-800">My Mood List</h2>
-                <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-blue-600 hover:text-blue-900 transition">
+                <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-blue-600 cursor-pointer hover:text-blue-900 transition">
                     {isOpen ? '▲' : '▼'}
                 </button>
             </div>
@@ -83,9 +83,9 @@ const MoodList = ({ moods }) => {
                             </div>
                         ) : (
                             <>
-                                <p className="text-xl text-blue-400">Date: {mood.date}</p>
-                                <p className="text-m text-blue-400">Mood: {mood.emoji}</p>
-                                <p className="text-m text-blue-400">Note: {mood.note}</p>
+                                <p className="text-xl text-blue-600">Date: {mood.date}</p>
+                                <p className="text-m text-blue-600">Mood: {mood.emoji}</p>
+                                <p className="text-m text-blue-600">Note: {mood.note}</p>
 
 
                                 <div className="absolute bottom-4 right-4 flex gap-2">

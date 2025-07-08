@@ -5,7 +5,7 @@ const Navbar = () => {
     const activeClass = "underline font-semibold";
 
     return (
-        <nav className="bg-indigo-600 text-white px-6 py-3 flex justify-center gap-8 shadow-md">
+        <nav className="px-6 py-3 flex justify-center gap-8 text-white">
             <NavLink
                 to="/dashboard"
                 className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
@@ -13,17 +13,24 @@ const Navbar = () => {
                 Dashboard
             </NavLink>
             <NavLink
-                to="/dashboard/add"
+                to="/dashboard/moodlist"
                 className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
             >
-                Mood Ekle
+                MoodList
             </NavLink>
             <NavLink
                 to="/dashboard/stats"
                 className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
             >
-                İstatistik
+                Statistics
             </NavLink>
+            <NavLink
+                to="/dashboard/aboutme"
+                className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
+            >
+                About Me
+            </NavLink>
+
         </nav>
     );
 };

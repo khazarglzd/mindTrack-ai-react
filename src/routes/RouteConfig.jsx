@@ -3,10 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Dashboard from '../pages/Dashboard';
-import AddMoodForm from '../components/AddMoodForm';
 import Statistics from '../pages/Statistics';
 import { useAuth } from '../context/AuthContext';
 import LoadingScreen from '../components/LoadingScreen';
+import MoodList from '../components/MoodList';
+import AboutMe from '../pages/AboutMe';
 
 function RouteConfig() {
     const { isAuthenticated } = useAuth();
@@ -28,8 +29,9 @@ function RouteConfig() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/add" element={<AddMoodForm />} />
+            <Route path="/dashboard/moodlist" element={<MoodList />} />
             <Route path="/dashboard/stats" element={<Statistics />} />
+            <Route path="/dashboard/about" element={<AboutMe />} />
         </Routes>
     );
 }

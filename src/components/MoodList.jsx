@@ -6,7 +6,7 @@ const MoodList = ({ moods }) => {
     const [editingId, setEditingId] = useState(null);
     const [editedEmoji, setEditedEmoji] = useState('');
     const [editedNote, setEditedNote] = useState('');
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleEditClick = (mood) => {
         setEditingId(mood.id);

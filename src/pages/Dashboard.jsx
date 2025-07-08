@@ -28,7 +28,18 @@ const Dashboard = () => {
             <p className="text-md mb-6 ml-1">Track your mood or journal your thoughts below.</p>
 
 
-            <AddMoodForm />
+            <button
+                onClick={() => navigate('/dashboard/addmood')}
+                className="bg-blue-600 text-white font-semibold cursor-pointer px-6 py-3 rounded shadow hover:bg-blue-700 transition mb-6"
+            >
+                Add New Mood
+            </button>
+            <button
+                onClick={() => navigate('/dashboard/stats')}
+                className="bg-blue-600 text-white font-semibold px-6 py-3 cursor-pointer  rounded shadow hover:bg-blue-700 transition ml-3 mb-6"
+            >
+                Statistics
+            </button>
             {/* <button
                 onClick={handleLogout}
                 className="bg-white text-blue-600 font-semibold px-6 py-3 rounded shadow hover:bg-gray-100 transition cursor-pointer"

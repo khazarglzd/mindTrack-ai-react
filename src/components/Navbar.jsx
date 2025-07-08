@@ -13,10 +13,16 @@ const Navbar = () => {
                 Dashboard
             </NavLink>
             <NavLink
+                to="/dashboard/addmood"
+                className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
+            >
+                New Mood
+            </NavLink>
+            <NavLink
                 to="/dashboard/moodlist"
                 className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
             >
-                MoodList
+                Mood List
             </NavLink>
             <NavLink
                 to="/dashboard/stats"
@@ -25,7 +31,7 @@ const Navbar = () => {
                 Statistics
             </NavLink>
             <NavLink
-                to="/dashboard/aboutme"
+                to="/dashboard/aboutus"
                 className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
             >
                 About Me

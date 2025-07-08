@@ -6,7 +6,7 @@ const AddMoodForm = () => {
     const [emoji, setEmoji] = useState('');
     const [note, setNote] = useState('');
 
-    const { addMood } = useMood();  // Burada addMood'u context'ten alıyoruz
+    const { addMood } = useMood();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {

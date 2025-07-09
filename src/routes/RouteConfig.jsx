@@ -6,10 +6,9 @@ import Dashboard from '../pages/Dashboard';
 import Statistics from '../pages/Statistics';
 import { useAuth } from '../context/AuthContext';
 import LoadingScreen from '../components/LoadingScreen';
-import MoodList from '../components/MoodList';
 import AboutUs from '../pages/AboutUs';
-import AddMoodForm from '../components/AddMoodForm';
 import NewMood from '../pages/NewMood';
+import MoodList from "../pages/MoodList"
 
 function RouteConfig() {
     const { isAuthenticated } = useAuth();

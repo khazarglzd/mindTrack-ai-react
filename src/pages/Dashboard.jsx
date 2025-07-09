@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 import AddMoodForm from '../components/AddMoodForm'
-import MoodList from '../components/MoodList'
+import MyMoodList from '../components/MyMoodList'
 import { useMood } from "../context/MoodContext"
 
 const Dashboard = () => {
@@ -46,7 +46,7 @@ const Dashboard = () => {
             >
                 Sign Out
             </button> */}
-            <MoodList moods={moods} />
+            <MyMoodList moods={moods} />
         </div>
 
     )

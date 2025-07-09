@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useMood } from '../context/MoodContext';
 
-const MoodList = ({ moods }) => {
+
+const MyMoodList = ({ moods, defaultOpen = false, showToggle = true }) => {
     const { deleteMood, editMood } = useMood();
     const [editingId, setEditingId] = useState(null);
     const [editedEmoji, setEditedEmoji] = useState('');
     const [editedNote, setEditedNote] = useState('');
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(defaultOpen);
+
 
     const handleEditClick = (mood) => {
         setEditingId(mood.id);
@@ -32,18 +34,20 @@ const MoodList = ({ moods }) => {
         return <p className="text-blue/80">No mood entries yet.</p>;
     }
 
+
+
     return (
         <div className="space-y-4">
+            {showToggle && (
+                <div onClick={() => setIsOpen(!isOpen)} className="flex justify-between items-center cursor-pointer bg-white/90 px-4 py-2 rounded shadow">
+                    <h2 className="text-xl font-semibold text-blue-800">My Mood List</h2>
+                    <button className="text-2xl text-blue-600 cursor-pointer hover:text-blue-900 transition">
+                        {isOpen ? '▲' : '▼'}
+                    </button>
+                </div>
+            )}
 
-            <div onClick={() => setIsOpen(!isOpen)} className="flex justify-between items-center cursor-pointer bg-white/90 px-4 py-2 rounded shadow">
-                <h2 className="text-xl font-semibold text-blue-800">My Mood List</h2>
-                <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-blue-600 cursor-pointer hover:text-blue-900 transition">
-                    {isOpen ? '▲' : '▼'}
-                </button>
-            </div>
-
-
-            {isOpen && moods.map((mood) => {
+            {(isOpen || !showToggle) && moods.map((mood) => {
                 const isEditing = editingId === mood.id;
 
                 return (
@@ -111,4 +115,4 @@ const MoodList = ({ moods }) => {
     );
 };
 
-export default MoodList;
+export default MyMoodList;

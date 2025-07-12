@@ -34,7 +34,7 @@ const Navbar = () => {
                 to="/dashboard/aboutus"
                 className={({ isActive }) => (isActive ? activeClass : "hover:underline")}
             >
-                About Me
+                About Us
             </NavLink>
 
         </nav>

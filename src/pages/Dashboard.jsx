@@ -26,16 +26,14 @@ const Dashboard = () => {
 
     return (
         <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full">
-            <h2 className="text-3xl font-bold mb-4 ml-1">Welcome back 👋</h2>
+            <h2 className="text-3xl font-bold mb-4 ml-1">Welcome back </h2>
             <p className="text-md mb-6 ml-1">Track your mood or journal your thoughts below.</p>
 
-            {quote ? (
-                <div style={{ background: 'lightblue', padding: '1rem', borderRadius: '8px' }}>
-                    <p>{quote.q}</p>
-                    <p>{quote.a}</p>
+            {quote && (
+                <div className=" border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded shadow">
+                    <p className="italic">"{quote.q}"</p>
+                    <p className="text-sm text-right">— {quote.a}</p>
                 </div>
-            ) : (
-                <p>Quote not loaded</p>
             )}
 
 

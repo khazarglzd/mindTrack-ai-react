@@ -33,7 +33,7 @@ function RouteConfig() {
             <Route path="/dashboard/moodlist" element={<MoodList />} />
             <Route path="/dashboard/addmood" element={<NewMood />} />
             <Route path="/dashboard/stats" element={<Statistics />} />
-            <Route path="/dashboard/about" element={<AboutUs />} />
+            <Route path="/dashboard/aboutus" element={<AboutUs />} />
         </Routes>
     );
 }

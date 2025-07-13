@@ -9,6 +9,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import AboutUs from '../pages/AboutUs';
 import NewMood from '../pages/NewMood';
 import MoodList from "../pages/MoodList"
+import SignUp from '../components/SignUp';
 
 function RouteConfig() {
     const { isAuthenticated } = useAuth();
@@ -34,6 +35,7 @@ function RouteConfig() {
             <Route path="/dashboard/addmood" element={<NewMood />} />
             <Route path="/dashboard/stats" element={<Statistics />} />
             <Route path="/dashboard/aboutus" element={<AboutUs />} />
+            <Route path="/signup" element={<SignUp />} />
         </Routes>
     );
 }

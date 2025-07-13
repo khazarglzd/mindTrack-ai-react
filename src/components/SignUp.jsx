@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { FcGoogle } from 'react-icons/fc';
 
-const Auth = () => {
+const SignUp = () => {
     const navigate = useNavigate();
-    const { signIn, isAuthenticated } = useAuth();
 
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        signIn();
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        console.log('Sign up with:', { username, email, password });
         navigate('/dashboard');
     };
 
-    const handleGoogleLogin = () => {
-        console.log('Google login');
+    const handleGoogleSignup = () => {
+        console.log('Google sign up');
     };
 
     return (
@@ -26,11 +26,21 @@ const Auth = () => {
                     <span className="font-normal">mind</span><span className="font-bold">Tracker</span>
                 </h1>
                 <p className="text-sm mb-6 text-blue-700">
-                    Track your mind, record your daily mood, and monitor your progress.
+                    Create your account to track your thoughts and moods.
                 </p>
 
-
-                <div className="space-y-4 mb-6 text-left">
+                <form onSubmit={handleSignUp} className="space-y-4 mb-6 text-left">
+                    <div>
+                        <label className="block text-sm mb-1 font-medium" htmlFor="username">Username</label>
+                        <input
+                            id="username"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            required
+                        />
+                    </div>
                     <div>
                         <label className="block text-sm mb-1 font-medium" htmlFor="email">Email</label>
                         <input
@@ -39,6 +49,7 @@ const Auth = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            required
                         />
                     </div>
                     <div>
@@ -49,40 +60,28 @@ const Auth = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            required
                         />
                     </div>
-                </div>
-
-
-                <div className="space-x-4 mb-6">
-                    {!isAuthenticated ? (
-                        <button
-                            onClick={handleLogin}
-                            className="bg-blue-600 text-white font-semibold px-6 py-2 rounded hover:bg-blue-700 transition"
-                        >
-                            Sign In
-                        </button>
-                    ) : (
-                        <p>You already signed in</p>
-                    )}
 
                     <button
-                        onClick={() => navigate('/signup')}
-                        className="bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-500 transition"
+                        type="submit"
+                        className="w-full bg-blue-600 text-white font-semibold px-6 py-2 rounded hover:bg-blue-700 transition"
                     >
-                        Sign Up
+                        Create Account
                     </button>
-                </div>
+                </form>
+
                 <button
-                    onClick={handleGoogleLogin}
+                    onClick={handleGoogleSignup}
                     className="w-full flex items-center justify-center border border-gray-300 rounded py-2 hover:bg-gray-100 transition"
                 >
                     <FcGoogle className="text-xl mr-2" />
-                    Sign in with Google
+                    Sign up with Google
                 </button>
             </div>
         </div>
     );
 };
 
-export default Auth;
+export default SignUp;

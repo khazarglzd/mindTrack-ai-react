@@ -35,7 +35,7 @@ const AddMoodForm = () => {
             onSubmit={handleSubmit}
             className="bg-white/80 text-blue-800 rounded-lg shadow-lg p-6 space-y-4 mb-4"
         >
-            <h2 className="text-xl font-bold">Add New Mood</h2>
+            <h2 className="text-3xl font-bold">Add New Mood</h2>
 
             <div className="flex flex-col">
                 <label htmlFor="emoji" className="mb-1 font-medium">Mood Emoji</label>

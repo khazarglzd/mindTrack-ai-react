@@ -19,9 +19,9 @@ const AddMoodForm = () => {
 
         const newMood = {
             id: Date.now(),
-            emoji,
+            mood: emoji,
             note,
-            date: `${new Date().toLocaleDateString('tr-TR')}  /  ${new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`
+            date: new Date().toISOString()
         };
 
         addMood(newMood);

@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
     return (
-        <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 max-w-3xl mx-auto mt-10">
+        <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full mx-auto mt-10">
             <h2 className="text-3xl font-bold mb-4 text-blue-900">About Us</h2>
             <p className="mb-4">
                 <span className="font-semibold text-blue-900">mindTracker</span> is a simple and intuitive mood tracking app built to help individuals understand their emotions better over time.

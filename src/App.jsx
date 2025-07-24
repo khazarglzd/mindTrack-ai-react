@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import RouteConfig from './routes/RouteConfig';
+import { Link } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -10,10 +11,13 @@ const App = () => {
         {/* Header */}
         <header className="p-4 shadow-md bg-white/10 backdrop-blur-sm flex items-center justify-between  mx-auto w-full">
           {/* Solda mindTracker */}
-          <h1 className="text-2xl font-bold tracking-wide text-blue-600 drop-shadow-md cursor-default select-none">
-            <span className="font-normal">mind</span>
-            <span className="font-bold">Tracker</span>
-          </h1>
+          <Link to="/dashboard">
+            <h1 className="text-2xl font-bold tracking-wide cursor-pointer text-blue-600 drop-shadow-md cursor-default select-none">
+              <span className="font-normal">mind</span>
+              <span className="font-bold">Tracker</span>
+            </h1>
+          </Link>
+
 
           {/* Sağda Navbar */}
           <Navbar />

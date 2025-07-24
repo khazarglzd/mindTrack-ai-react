@@ -39,7 +39,7 @@ const Statistics = () => {
     };
 
     return (
-        <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full max-w-3xl mx-auto text-left">
+        <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full  mx-auto text-left">
             <h2 className="text-3xl font-bold mb-4">Statistics</h2>
             <p className="mb-8">Here’s a breakdown of your mood activity.</p>
 

@@ -40,13 +40,13 @@ const Dashboard = () => {
             <div className="flex gap-4 mb-6">
                 <button
                     onClick={() => navigate('/dashboard/addmood')}
-                    className="bg-blue-600 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-700 transition"
+                    className="bg-blue-600 text-white font-semibold px-6 py-3 cursor-pointer rounded shadow hover:bg-blue-700 transition"
                 >
                     Add New Mood
                 </button>
                 <button
                     onClick={() => navigate('/dashboard/stats')}
-                    className="bg-blue-600 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-700 transition"
+                    className="bg-blue-600 text-white font-semibold px-6 py-3 cursor-pointer rounded shadow hover:bg-blue-700 transition"
                 >
                     Statistics
                 </button>

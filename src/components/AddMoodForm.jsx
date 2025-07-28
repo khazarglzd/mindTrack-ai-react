@@ -21,7 +21,7 @@ const moodOptions = [
     { label: 'Excited', value: 'Excited', bgColor: 'bg-teal-200', textColor: 'text-teal-800' },
 ];
 
-// Inline stil butonları ve gösterimleri
+
 const INLINE_STYLES = [
     { label: 'Bold', style: 'BOLD', display: <b>B</b> },
     { label: 'Italic', style: 'ITALIC', display: <i>I</i> },
@@ -29,11 +29,8 @@ const INLINE_STYLES = [
     { label: 'Monospace', style: 'CODE', display: <code>{'{ }'}</code> },
 ];
 
-// Block tipleri ve gösterimleri
+
 const BLOCK_TYPES = [
-    { label: 'H1', style: 'header-one' },
-    { label: 'H2', style: 'header-two' },
-    { label: 'Blockquote', style: 'blockquote' },
     { label: 'UL', style: 'unordered-list-item' },
     { label: 'OL', style: 'ordered-list-item' },
 ];
@@ -44,10 +41,10 @@ const AddMoodForm = () => {
     const { addMood } = useMood();
     const navigate = useNavigate();
 
-    // Mevcut inline stilleri al
+
     const currentStyle = editorState.getCurrentInlineStyle();
 
-    // Mevcut block tipi al
+
     const selection = editorState.getSelection();
     const blockType = editorState
         .getCurrentContent()
@@ -62,7 +59,7 @@ const AddMoodForm = () => {
         setEditorState(RichUtils.toggleBlockType(editorState, blockType));
     };
 
-    // Link ekleme (prompt ile)
+
     const promptForLink = () => {
         const selection = editorState.getSelection();
         if (!selection.isCollapsed()) {
@@ -152,8 +149,8 @@ const AddMoodForm = () => {
                     />
                 </div>
 
-                {/* Stil butonları - küçük, sade, tek satır */}
-                <div className="mt-3 flex gap-1 overflow-x-auto">
+
+                <div className="mt-3 flex gap-1 justify-end overflow-x-auto">
                     {INLINE_STYLES.map(({ label, style, display }) => (
                         <button
                             key={style}
@@ -205,7 +202,7 @@ const AddMoodForm = () => {
                         );
                     })}
 
-                    {/* Link butonu */}
+
                     <button
                         type="button"
                         onClick={promptForLink}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMood } from '../context/MoodContext';
+import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
-// Mood renkleri ve stilleri
 const moodOptions = [
     { label: 'Very Angry', value: 'Very Angry', bgColor: 'bg-red-200', textColor: 'text-red-800' },
     { label: 'Angry', value: 'Angry', bgColor: 'bg-red-300', textColor: 'text-red-900' },
@@ -13,7 +13,6 @@ const moodOptions = [
     { label: 'Excited', value: 'Excited', bgColor: 'bg-teal-200', textColor: 'text-teal-800' },
 ];
 
-// Mood badge için stil döndüren fonksiyon
 const getMoodTagStyle = (mood) => {
     const match = moodOptions.find(option => option.value === mood);
     return match ? `${match.bgColor} ${match.textColor}` : 'bg-gray-200 text-gray-800';
@@ -31,6 +30,23 @@ const formatDate = (dateString) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
 
     return `${day}.${month}.${year} ${hours}:${minutes}`;
+};
+
+
+const renderNote = (note) => {
+    try {
+        const raw = JSON.parse(note);
+        const contentState = convertFromRaw(raw);
+        const editorState = EditorState.createWithContent(contentState);
+
+        return (
+            <div className="mt-2 text-sm text-blue-900">
+                <Editor editorState={editorState} readOnly={true} />
+            </div>
+        );
+    } catch {
+        return <p className="text-sm mt-2 italic">{note}</p>;
+    }
 };
 
 const MyMoodList = ({ moods = [], defaultOpen = false, showToggle = true }) => {
@@ -140,9 +156,9 @@ const MyMoodList = ({ moods = [], defaultOpen = false, showToggle = true }) => {
                                             </div>
                                             <span className="text-sm text-gray-500">{formatDate(date)}</span>
                                         </div>
-                                        <div className="text-blue-900">
-                                            <p className="font-medium">Note: {note}</p>
-                                        </div>
+
+                                        {/* Burada artık Statistics ile aynı gösterim */}
+                                        {note && renderNote(note)}
 
                                         <div className="absolute bottom-4 right-4 flex gap-2">
                                             <button

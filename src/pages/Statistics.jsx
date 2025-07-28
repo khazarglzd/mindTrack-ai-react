@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useMood } from '../context/MoodContext';
+import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
 const moodOptions = [
     { label: 'Very Angry', value: 'Very Angry', borderColor: 'border-red-500' },
@@ -12,6 +13,23 @@ const moodOptions = [
     { label: 'Excited', value: 'Excited', borderColor: 'border-teal-500' },
 ];
 
+
+const renderNote = (note) => {
+    try {
+        const raw = JSON.parse(note);
+        const contentState = convertFromRaw(raw);
+        const editorState = EditorState.createWithContent(contentState);
+
+        return (
+            <div className="mt-2 text-sm text-blue-900">
+                <Editor editorState={editorState} readOnly={true} />
+            </div>
+        );
+    } catch {
+        return <p className="text-sm mt-2 italic">{note}</p>;
+    }
+};
+
 const Statistics = () => {
     const { moods } = useMood();
     const [selectedMood, setSelectedMood] = useState('Neutral');
@@ -23,9 +41,7 @@ const Statistics = () => {
     const moodSummary = useMemo(() => {
         const summary = {};
         moods.forEach(({ mood }) => {
-            if (mood) {
-                summary[mood] = (summary[mood] || 0) + 1;
-            }
+            if (mood) summary[mood] = (summary[mood] || 0) + 1;
         });
         return summary;
     }, [moods]);
@@ -39,11 +55,11 @@ const Statistics = () => {
     };
 
     return (
-        <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full  mx-auto text-left">
+        <div className="bg-white/80 p-6 rounded-lg shadow-lg text-blue-800 w-full mx-auto text-left">
             <h2 className="text-3xl font-bold mb-4">Statistics</h2>
             <p className="mb-8">Here’s a breakdown of your mood activity.</p>
 
-
+            {/* Mood Frequency */}
             <section className="mb-10">
                 <h3 className="text-xl font-semibold mb-3">Mood Frequency</h3>
                 {Object.keys(moodSummary).length === 0 ? (
@@ -67,7 +83,6 @@ const Statistics = () => {
                     </ul>
                 )}
             </section>
-
 
             <section className="mb-10">
                 <h3 className="text-xl font-semibold mb-3">All Moods Archive</h3>
@@ -102,7 +117,7 @@ const Statistics = () => {
                                             })}
                                         </span>
                                     </div>
-                                    {note && <p className="text-sm mt-2 italic">"{note}"</p>}
+                                    {note && renderNote(note)}
                                 </li>
                             );
                         })}
@@ -134,7 +149,7 @@ const Statistics = () => {
                                             })}
                                         </span>
                                     </div>
-                                    {note && <p className="text-sm mt-2 italic">"{note}"</p>}
+                                    {note && renderNote(note)}
                                 </li>
                             );
                         })}
